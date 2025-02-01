@@ -62,4 +62,6 @@ This assignment tests your ability to integrate Python with a **DCC application*
 - **Git for version control**
 
 ---
+## System Design
+![image](https://github.com/user-attachments/assets/20dc89d7-df33-4abe-86c0-b3fdc394f867)
 
