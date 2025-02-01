@@ -6,7 +6,6 @@ from fastapi import status
 from models import Transform,Component,AddItem,updateItem,deleteItem
 from typing import Optional
 import os
-import bpython
 Session=sessionmaker(bind=engine,autoflush=True,autocommit=False)
 router=APIRouter()
 BaseModel.metadata.create_all(bind=engine)

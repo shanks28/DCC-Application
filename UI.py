@@ -8,7 +8,7 @@ import sys
 SERVER_URL = "http://127.0.0.1:8000/object"
 
 class LoadInventoryThread(QThread):
-    inventory_loaded = pyqtSignal(list)  # Signal to send inventory data back to the UI
+    inventory_loaded = pyqtSignal(list)
 
     def run(self):
         try:
@@ -122,7 +122,7 @@ class InventoryUI(QWidget):
             QMessageBox.warning(self, "No Selection", "Please select an item to remove.")
             return
         name = selected_item.text().split(":")[0]
-        # Use DELETE request for removal
+
         self.send_request("remove-item", {"name": name}, method="DELETE")
 
     def update_quantity(self):
@@ -133,7 +133,7 @@ class InventoryUI(QWidget):
         name = selected_item.text().split(":")[0]
         new_quantity, ok = QInputDialog.getInt(self, "Update Quantity", "Enter new quantity:")
         if ok:
-            # Use PUT request for updating quantity
+
             self.send_request("update-quantity", {"name": name, "new_qty": new_quantity}, method="PUT")
 
     def buy_item(self):
@@ -142,7 +142,7 @@ class InventoryUI(QWidget):
             QMessageBox.warning(self, "No Selection", "Please select an item to buy.")
             return
         name = selected_item.text().split(":")[0]
-        # Assuming buying is an update operation
+
         self.send_request("update-quantity", {"name": name, "new_qty": -1}, method="PUT")
 
     def return_item(self):
@@ -151,8 +151,7 @@ class InventoryUI(QWidget):
             QMessageBox.warning(self, "No Selection", "Please select an item to return.")
             return
         name = selected_item.text().split(":")[0]
-        # Assuming returning is an update operation
-        self.send_request("update-quantity", {"name": name, "new_quantity": 1}, method="PUT")
+        self.send_request("update-quantity", {"name": name, "new_qty": 1}, method="PUT")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
