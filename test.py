@@ -12,7 +12,7 @@ def mock_db():
         mock_connect.return_value.cursor.return_value = mock_cursor
         yield mock_cursor
 
-def test_transform(mock_db):
+def test_transform():
     response = client.post("/object/transform", json={"name":"Cube","position": [1, 2, 3], "rotation": [0, 0, 0], "scale": [1, 1, 1]})
     assert response.status_code == 200
 
